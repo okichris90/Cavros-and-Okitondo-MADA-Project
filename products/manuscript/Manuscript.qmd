@@ -1,0 +1,152 @@
+---
+title: "Which groups are at highest risk for low uptake of flu vaccine?"
+author: Chris Okitondo and Irene Cavros
+date: "`r Sys.Date()`"
+format:
+  docx:
+    toc: false
+    number-sections: true
+    highlight-style: github
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, echo=FALSE, message=FALSE}
+# load a few R packages
+library(here)
+library(knitr)
+```
+
+# Summary/Abstract
+
+[\*\*To be completed (PART 5)]{.underline}
+
+# Introduction
+
+### General Background Information
+
+[\*\*To be completed (PART 4)]{.underline}
+
+### Questions/Hypotheses to be addressed
+
+Using the aforementioned database, our research question of interest is
+as follows:
+
+Which groups are at highest risk for low uptake of flu vaccine?
+
+# Methods
+
+### Description of data and data source
+
+The data source used for this project is the National Health Interview
+Survey (NHIS.) It is a harmonized set of data beginning in 1963 with
+information on general health status, acute and chronic illness,
+functional limitations, access to care, insurance coverage, and health
+behaviors for the U.S. population. On average, the survey covers 100,000
+persons in 45,000 households each year. PUMS NHIS currently contains
+over 17,000 integrated variables from 1963 to present.
+
+As the outcome of interest, researchers focused on those who, in this
+household survey between the years of 2012 and 2021, answered no when
+they were asked whether they had ANY flu vaccine in the past 12 months.
+
+Variables assessed are as follows:
+
+1\. Demographics: age, sex, race, ethnicity, veteran status
+
+2\. Socioeconomic status: education level, total combined family income,
+employment status, paid sick leave as part of job benefits, ratio of
+family income to poverty threshold
+
+3\. General health: perceived health status, categorical BMI
+
+4\. Conditions: ever told had asthma, ever told had cancer, ever told
+had coronary heart disease
+
+5\. Health behaviors: alcohol drinking status, cigarette smoking status
+
+6\. Access to care: has usual place for medical care, medical care
+delayed due to cost (past 12 months)
+
+7\. Health insurance: health insurance coverage status
+
+8\. Mental health: anxiety level, depression level
+
+#### Study population
+
+The raw data for our period of interest directly extracted from the NHIS
+IPUMS survey initially had had 792,916 observations. After processing
+the raw data and removing all observations with missing data in any of
+our predictors of interest, 106980 individuals were included in our
+analysis. Table 1 below provides a summary of demographic
+characteristics of our study population.
+
+[\*\*To be completed (PART 4)]{.underline}
+
+### Statistical analysis
+
+*Explain anything related to your statistical analyses.*
+
+[\*\*To be completed (PART 4)]{.underline}
+
+# Results
+
+### Exploratory/Descriptive analysis
+
+\*\* Table 1: Demographic characteristics of the study population \*\*
+
+### Loading Table 1 from the Exploratory Analysis
+
+```{r, warning=FALSE, message=FALSE}
+result_table1 <- readRDS(here("results", "table1_demographics.rds"))
+result_table1
+```
+
+\*\*
+
+### Full analysis
+
+##### Model 1: Focusing on only demogrphics characteristics using the flu vaccine uptake as our outcome
+
+```{r, warning=FALSE, message=FALSE}
+result_table2 <- readRDS(here("results", "demographics_model.rds"))
+result_table2
+```
+
+### Model 2: Using all our predictors of interest in the model with flu vaccine uptake as our outcome
+
+```{r, warning=FALSE}
+result_table3 <- readRDS(here("results", "full_model.rds"))
+result_table3
+```
+
+\*\*
+
+# Discussion
+
+### Summary and Interpretation
+
+*Summarize what you did, what you found and what it means.*
+
+[\*\*To be completed (PART 5)]{.underline}
+
+### Strengths and Limitations
+
+*Discuss what you perceive as strengths and limitations of your
+analysis.*
+
+[\*\*To be completed (PART 5)]{.underline}
+
+### Conclusions
+
+*What are the main take-home messages?*
+
+[\*\*To be completed (PART 5)]{.underline}
+
+# References
+
+*Include citations in your Rmd file using bibtex, the list of references
+will automatically be placed at the end*
+
+[\*\*To be completed (PART 5)]{.underline}
