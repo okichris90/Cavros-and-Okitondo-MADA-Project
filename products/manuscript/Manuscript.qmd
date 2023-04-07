@@ -20,44 +20,144 @@ library(knitr)
 
 # Summary/Abstract
 
-[\*\*To be completed (PART 5)]{.underline}
+Influenza, or flu, is an extremely contagious respiratory illness caused
+by a virus. It can cause a range of symptoms, including fever, cough,
+sore throat, body aches, headache, chills, and fatigue (CDC, Key Facts
+about Seasonal Flu Vaccine, 2022). It can be particularly dangerous for
+certain groups, such as older adults, young children, and individuals
+with underlying health issues, often resulting in severe illness or even
+death  Although influenza vaccinations are widely accessible, many
+people in the United States do not receive them as recommended. This
+study examines influenza vaccination uptake among US adults from
+2012-2021. Using a subset of the National Health Interview Survey (NHIS)
+data set, researchers provide important insights into which groups are
+at highest risk for under-coverage of flu vaccine in order to better
+inform targeted public health interventions for improving uptake.
 
 # Introduction
 
 ### General Background Information
 
-[\*\*To be completed (PART 4)]{.underline}
+Influenza, commonly known as the flu, is a contagious respiratory
+illness which comes from influenza viruses. It can cause mild to severe
+illness, and in some cases, it can lead to hospitalization or even
+death. Symptoms of the flu include fever, cough, sore throat, body
+aches, headache, chills, and fatigue (CDC, About Flu, 2022). It can
+spread easily from person to person through droplets that are released
+when infected individuals cough, sneeze, or talk.
 
-### Questions/Hypotheses to be addressed
+Vaccines are a crucial tool in preventing the spread of infectious
+diseases, including the flu. On an individual level, the best way to
+protect against the flu is by getting vaccinated each year. At the
+population level, high vaccine coverage is a powerful strategy for
+reducing spread of the virus (CDC, Key Facts about Seasonal Flu Vaccine,
+2022).
 
-Using the aforementioned database, our research question of interest is
-as follows:
+The U.S. Centers for Disease Control and Prevention (CDC) recommends
+that everyone six months of age and older receive a flu vaccine each
+year, with rare exceptions (CDC, Key Facts about Seasonal Flu Vaccine,
+2022). Influenza is a constantly evolving virus that mutates rapidly,
+and uncontrolled spread gives rise to many different strains, so new
+vaccines are developed each year to protect against the most common
+strains of the virus that are expected to circulate during the upcoming
+flu season. It is especially important for individuals who are at higher
+risk of severe illness or complications from the flu, such as young
+children, older adults, pregnant women, and individuals with underlying
+medical conditions.
 
-Which groups are at highest risk for low uptake of flu vaccine?
+In terms of the availability and cost, there have been significant
+changes for flu vaccines over the past 50 years (CDC, Influenza Historic
+Timeline, 2019). In the 1960s, flu vaccines were not widely available
+and were primarily given to people considered to be at high risk for
+complications. The cost of the vaccine was relatively high and was not
+covered by most insurance plans. In the 1970s and 1980s, flu vaccines
+became more widely available and were recommended for more people,
+including children and healthy adults. The cost of the vaccine began to
+decrease as more people received it, and insurance coverage for the
+vaccine became more common. In the 1990s and 2000s, the availability of
+flu vaccines continued to increase, and the cost of the vaccine became
+more affordable for a larger proportion of the U.S. population.
+
+Today, flu vaccines are frequently available in doctor's offices,
+pharmacies, community clinics, workplace clinics, school-based clinics,
+and local health departments, among others. They are often covered by
+insurance plans, which has increased their accessibility. Many public
+health clinics and community organizations also offer flu vaccines at
+low or no cost, in order to better target historically unreached
+populations.
+
+Despite the availability and recommendation of influenza vaccines, many
+people in the United States still do not receive them as recommended. In
+fact, the CDC reported that only 49.2% of adults aged 18 years and older
+received a flu vaccine during the 2020-2021 flu season (CDC, Inequities
+in Flu Vaccine Uptake 2022). This low uptake of influenza vaccine
+highlights the need for understanding the factors that contribute to
+under-coverage of the vaccine in certain populations.
+
+Racial/ethnic minorities have a long history of reduced vaccination
+rates relative to white Americans (Khan 2018). Since 2010, flu
+vaccination coverage has been consistently lower among Black, Hispanic,
+and AI/AN adults. During the 2021--2022 season, flu vaccination coverage
+was 54% among White adults, 42% among Black adults, 38% among Hispanic
+adults, and 41% among AI/AN adults (CDC, Inequities in Flu Vaccine
+Uptake 2022). There are many reasons for these inequities, including
+lack of access to health care and insurance, missed opportunities to
+vaccinate, and misinformation and distrust.
+
+Racial and ethnic minorities have a longstanding history of lower
+vaccination rates compared to white Americans. Since 2010, Black,
+Hispanic, and American Indian/Alaska Native adults have consistently had
+lower flu vaccination rates than White adults. In the 2021-2022 flu
+season, vaccination coverage for White adults was 54%, while it was 42%
+for Black adults, 38% for Hispanic adults, and 41% for AI/AN adults
+(CDC, Inequities in Flu Vaccine Uptake 2022).  The reasons for these
+disparities are multifactorial, and may include limited access to
+healthcare and insurance, missed opportunities for vaccination, and
+misinformation and mistrust.
+
+In prior studies, lower income levels were associated with decreased
+odds of influenza vaccine receipt (Gaskin 2022, Vashist 2022), and
+having health insurance coverage has also been shown to be associated
+with increased influenza vaccine coverage (Cambou 2021, Vashist 2022).
+Influenza vaccination rates were also found to be lower in rural than in
+urban areas among adults of all age groups and both genders (Jain 2022).
+However, there are still many variables of interest from the NHIS
+dataset that have yet to be evaluated in detail. Additionally, the
+periods of study from all prior research all end prior to the onset of
+the COVID-19 pandemic, which could have altered or heightened
+disparities even more.
 
 # Methods
 
 ### Description of data and data source
 
 The data source used for this project is the National Health Interview
-Survey (NHIS.) It is a harmonized set of data beginning in 1963 with
+Survey (NHIS). It is a harmonized set of data beginning in 1963 with
 information on general health status, acute and chronic illness,
 functional limitations, access to care, insurance coverage, and health
 behaviors for the U.S. population. On average, the survey covers 100,000
-persons in 45,000 households each year. PUMS NHIS currently contains
-over 17,000 integrated variables from 1963 to present.
+persons in 45,000 households each year. It is conducted in-person and by
+telephone, and its sample is designed to be representative of the
+civilian United States population (NHIS, About).
 
-As the outcome of interest, researchers focused on those who, in this
-household survey between the years of 2012 and 2021, answered no when
-they were asked whether they had ANY flu vaccine in the past 12 months.
+#### Study population
 
-Variables assessed are as follows:
+Individuals were eligible for the study if they were interviewed as part
+of the NHIS household survey between the years of 2012 and 2021. Table 1
+below provides a summary of demographic characteristics of our study
+population.
+
+### Statistical analysis
+
+The raw data for the period of interest directly extracted from the NHIS
+IPUMS survey initially had had 792,916 observations. Researchers then
+selected their predictors of interest to model the association between
+the outcome and variables. Variables assessed are as follows:
 
 1\. Demographics: age, sex, race, ethnicity, veteran status
 
 2\. Socioeconomic status: education level, total combined family income,
-employment status, paid sick leave as part of job benefits, ratio of
-family income to poverty threshold
+employment status, paid sick leave as part of job benefits
 
 3\. General health: perceived health status, categorical BMI
 
@@ -71,24 +171,17 @@ delayed due to cost (past 12 months)
 
 7\. Health insurance: health insurance coverage status
 
-8\. Mental health: anxiety level, depression level
+8\. Mental health: anxiety level, depression level.
 
-#### Study population
-
-The raw data for our period of interest directly extracted from the NHIS
-IPUMS survey initially had had 792,916 observations. After processing
-the raw data and removing all observations with missing data in any of
-our predictors of interest, 106980 individuals were included in our
-analysis. Table 1 below provides a summary of demographic
-characteristics of our study population.
-
-[\*\*To be completed (PART 4)]{.underline}
-
-### Statistical analysis
-
-*Explain anything related to your statistical analyses.*
-
-[\*\*To be completed (PART 4)]{.underline}
+\
+After processing the raw data and removing all observations with missing
+data for any of the predictors of interest, the remaining 106,980
+individuals were included in the analysis. Because of the binary
+outcome, logistic regression was utilized to model the association
+between the outcome and variables of interest. Researchers utilized
+machine learning to split data and create a workflow. Data was split
+randomly where 75% of included participants made up the training dataset
+and 25% made up the testing dataset.
 
 # Results
 
