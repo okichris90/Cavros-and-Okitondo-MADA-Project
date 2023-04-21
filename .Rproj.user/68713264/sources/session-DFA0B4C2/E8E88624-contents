@@ -175,7 +175,9 @@ tidy(log_fit_health_behaviors)
 ```{r}
 log_fit_full <- log_mod %>% fit(as.factor(flu_vaccine) ~  age + sex + race + hispanic + education + fam_income + asthma + cancer + chd + smoking_status+ alcohol_status, data = mydata2)
 
-table_full <- tidy(log_fit_full)
+log_fit_full
+
+table_full <- tidy(log_fit_full, conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE)
 table_full
 
 saveRDS(table_full, file = (here("results", "full_model.rds")))
