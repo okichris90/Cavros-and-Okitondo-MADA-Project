@@ -12,12 +12,13 @@ As part of the exploratory analysis, we have produced plots, tables, and other s
 # Setup
 
 ```{r, warning=FALSE, message=FALSE}
-#load needed packages. make sure they are installed.
 library(here) #for data loading/saving
 library(dplyr)
 library(ggplot2)
 library(haven)
-library("kableExtra") # For producing a nice table 1
+library(gridExtra) # To combine plots
+library("gtsummary") # For producing table 1
+#library("kableExtra") # For producing a nice table 1
 ```
 
 ### Load the data
@@ -35,12 +36,6 @@ mydata <- readRDS(data_location)
 mydata2 <- na.omit(mydata)
 ```
 
-### Print data
-
-```{r}
-print(mydata2)
-```
-
 # Data exploration through tables
 
 Showing a bit of code to produce and save a summary table.
@@ -54,56 +49,157 @@ summary_df <- dplyr::glimpse(mydata2)
 summarytable_file = here("results", "summarytable.rds")
 saveRDS(summary_df, file = summarytable_file)
 ```
-### Checking names of data
+
+# Checking names of data
 ```{r}
 names(mydata2)
 ```
 
-## Data exploration through figures
+# Data exploration through figures
 
-###Box plots for the flu vaccine uptake and age
+```{r}
+getwd()
+```
+
+
+## Box plots for the flu vaccine uptake and age
 
 ```{r}
 p1 <- ggplot(mydata2, aes(x=flu_vaccine, y=age)) + 
-  geom_boxplot(fill = "gray") +
-  labs(title = "Distribution of Age per flu vaccine uptake", x = "Uptake of Flu Vaccine in the past 12 months", y = "Age") +  theme_classic()
+  geom_boxplot(fill = "#A8DADC") + scale_x_discrete(labels = c("No", "Yes")) +
+  labs(title = "Figure 1: Distribution of flu vaccine uptake by age", x = "Uptake of Flu Vaccine in the past 12 months", y = "Age") +  theme_classic() +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 12, margin = margin(t = 12)),
+        axis.title.y = element_text(size = 12, margin = margin(r = 12)),
+        axis.text = element_text(size = 12),
+        legend.position = "none",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
 
 p1
 ```
 
+### Saving the plot in the result folder
 ```{r}
-figure_file = here("results","age & flu uptake distribution.png")
+figure_file = here("results","Figure 1: Age & flu uptake distribution.png")
 ggsave(filename = figure_file, plot=p1) 
 ```
 
-### Barplot for flu vaccine uptake: 1 for no and 2 for yes
-
+### Uptake of flu vaccine by race
 ```{r}
-ggplot(mydata2, aes(flu_vaccine)) + 
-  geom_bar(width=0.7, fill="steelblue") + scale_x_discrete(labels=c('Did not take flu vaccine', 'Did take flu vaccine')) + theme_classic()
+p2 <- ggplot(mydata2, aes(x = flu_vaccine, fill = race)) +
+  geom_bar(position = "dodge", alpha = 0.8, color = "black") +
+  labs(title = "Figure 2: Distribution of flu vaccine uptake by race",
+       x = "Flu Vaccine Uptake in the Past 12 Months",
+       y = "Count") +
+  scale_x_discrete(labels = c("Did not take flu vaccine", "Did take flu vaccine")) +
+  scale_fill_manual(values = c("#A8DADC", "#F4A261", "#E76F51", "#E76F51"), labels = c("White", "Black", "Native American", "Asian")) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 12, margin = margin(t = 12)),
+        axis.title.y = element_text(size = 12, margin = margin(r = 12)),
+        axis.text = element_text(size = 12),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+p2
+```
+
+### Saving the plot in the result folder
+```{r}
+figure_file = here("results","race & flu uptake distribution.png")
+ggsave(filename = figure_file, plot=p2) 
 ```
 
 ### Flu vaccine by sex: 1 for no and 2 for yes
 ```{r}
-ggplot(mydata2, aes(x= flu_vaccine, fill = sex)) + 
-  geom_bar(position = "dodge") + scale_x_discrete(labels=c('Did not take flu vaccine', 'Did take flu vaccine')) + scale_fill_discrete(labels=c('Male', 'Female')) +  theme_classic()
- 
+p3 <- ggplot(mydata2, aes(x = flu_vaccine, fill = sex)) +
+  geom_bar(position = "dodge", alpha = 0.8, color = "black") +
+  labs(title = "Flu Vaccine Uptake by Sex",
+       x = "Flu Vaccine Uptake in the Past 12 Months",
+       y = "Count") +
+  scale_x_discrete(labels = c("Did not take flu vaccine", "Did take flu vaccine")) +
+  scale_fill_manual(values = c("#A8DADC", "#F4A261"), labels = c("Male", "Female")) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 12, margin = margin(t = 12)),
+        axis.title.y = element_text(size = 12, margin = margin(r = 12)),
+        axis.text = element_text(size = 12),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+p3
+```
+
+### Saving the plot in the result folder
+```{r}
+figure_file = here("results","sex & flu uptake distribution.png")
+ggsave(filename = figure_file, plot=p3) 
 ```
 
 ### Flu vaccine by smoking: 1 for nonsmoker, 2 for former smoker, 3 for current smoker
+```{r}
+p4 <- ggplot(mydata2, aes(x = flu_vaccine, fill = smoking_status)) +
+  geom_bar(position = "dodge", alpha = 0.8, color = "black") +
+  labs(title = "Flu Vaccine Uptake by Smoking Status",
+       x = "Flu Vaccine Uptake in the Past 12 Months",
+       y = "Count") +
+  scale_x_discrete(labels = c("Did not take flu vaccine", "Did take flu vaccine")) +
+  scale_fill_manual(values = c("#A8DADC", "#F4A261", "#E76F51"), labels = c("Nonsmoker", "Former Smoker", "Current Smoker")) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 12, margin = margin(t = 12)),
+        axis.title.y = element_text(size = 12, margin = margin(r = 12)),
+        axis.text = element_text(size = 12),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
 
-```{r, message=FALSE, warning=FALSE}
-ggplot(mydata2, aes(x = flu_vaccine, fill = smoking_status)) +
-  geom_histogram(stat="count") + scale_x_discrete(labels=c('Did not take flu vaccine', 'Did take flu vaccine')) + scale_fill_discrete(labels=c('Nonsmoker', 'Former Smoker', 'Current smoker')) +
-  ggtitle("Distribution of flu vaccine uptake and smoking status") + theme_classic()
+p4
+```
+
+### Saving the plot in the result folder
+```{r}
+figure_file = here("results","smoking status & flu uptake distribution.png")
+ggsave(filename = figure_file, plot=p4) 
 ```
 
 ### Flu vaccine by health insurance status
 
-```{r, message=FALSE, warning=FALSE}
-ggplot(mydata2, aes(x = flu_vaccine, fill = health_ins_status)) +
-  geom_histogram(stat="count") + scale_x_discrete(labels=c('Did not take flu vaccine', 'Did take flu vaccine')) + scale_fill_discrete(labels=c('Does not have health insurance', 'Does have health insurance')) +
-  ggtitle("Distribution of flu vaccine uptake by health insurance status") + theme_classic()
+```{r}
+p5 <- ggplot(mydata2, aes(x = flu_vaccine, fill = health_ins_status)) +
+  geom_bar(position = "dodge", alpha = 0.8, color = "black") +
+  labs(title = "Flu Vaccine Uptake by Insurance Status",
+       x = "Flu Vaccine Uptake in the Past 12 Months",
+       y = "Count") +
+  scale_x_discrete(labels = c("Did not take flu vaccine", "Did take flu vaccine")) +
+  scale_fill_manual(values = c("#A8DADC", "#F4A261"), labels = c('Does not have health insurance', 'Does have health insurance')) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 12, margin = margin(t = 12)),
+        axis.title.y = element_text(size = 12, margin = margin(r = 12)),
+        axis.text = element_text(size = 12),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+p5
+```
+
+### Saving the plot in the result folder
+```{r}
+figure_file = here("results","Insurance status & flu uptake distribution.png")
+ggsave(filename = figure_file, plot=p5) 
 ```
 
 
@@ -155,10 +251,25 @@ library(table1)
 ```
 
 
+```{r}
+tbl_summary(mydata2)
+```
+
+
+```{r}
+a <- mydata2 %>% select(age, sex)
+b <- tbl_summary(a)
+```
+
+
+
+
+
+
 ## Full table for demogrophics characteristics
 ```{r, warning=FALSE, message=FALSE}
 library(table1)
-table_dems <- (table1(~ factor(sex) + age + factor(race) + factor(hispanic) + factor(education) + factor(fam_income) + factor(employ_status) + factor(paid_sick) + factor(health_ins_status) + factor(med_access) + factor(med_care_delayed_cost) + factor(health_status) + factor(bmi) + factor(asthma) + factor(cancer) + factor(chd) + factor(alcohol_status) + factor(smoking_status)| flu_vaccine, data=mydata2))
+table_dems <- (table1(~ sex + age + race + hispanic + education + fam_income + employ_status + paid_sick + health_ins_status + med_access + med_care_delayed_cost + health_status + bmi + asthma + cancer + chd + alcohol_status + smoking_status| flu_vaccine, data=mydata2))
 
 table_dems
 
@@ -170,6 +281,13 @@ table_dems
 table_dems_v2 <- t1kable(table_dems)
 table_dems_v2
 ```
+
+```{r}
+install.packages("kableExtra", dependencies = TRUE)
+```
+
+
+
 
 ### Saving table 1 in the results section
 ```{r}
