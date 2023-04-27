@@ -10,14 +10,13 @@ This Quarto file loads the cleaned data and does some exploring.
 As part of the exploratory analysis, we have produced plots, tables, and other summary quantities for some interesting aspects of our data.
 
 # Setup
-
 ```{r, warning=FALSE, message=FALSE}
 library(here) #for data loading/saving
 library(dplyr)
 library(ggplot2)
 library(haven)
 library(gridExtra) # To combine plots
-library("gtsummary") # For producing table 1
+library(gtsummary) # For producing table 1
 #library("kableExtra") # For producing a nice table 1
 ```
 
