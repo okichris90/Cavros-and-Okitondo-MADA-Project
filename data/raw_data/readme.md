@@ -1,4 +1,4 @@
-This folder contains a raw dataset with the below variables:
+This folder contains a raw dataset from NHIS with the below variables:
 
 YEAR - survey year
 SERIAL - sequential serial number, household record
