@@ -171,7 +171,7 @@ data1$ALCSTAT1 [data1$ALCSTAT1 ==0|data1$ALCSTAT1 ==9] <- NA
 data1$SMOKESTATUS2[data1$SMOKESTATUS2 == 10|data1$SMOKESTATUS2  == 11|data1$SMOKESTATUS2==12] <-3
 data1$SMOKESTATUS2 [data1$SMOKESTATUS2 == 20 ] <- 2
 data1$SMOKESTATUS2 [data1$SMOKESTATUS2 == 30 ] <- 1
-data1$SMOKESTATUS2 [data1$SMOKESTATUS2 > 30 ] <- NA
+data1$SMOKESTATUS2 [data1$SMOKESTATUS2 > 30 | data1$SMOKESTATUS2 ==0] <- NA
 
 # Worry, nervous, or anxious frequency: WORFREQ. 1 Daily, 2 weekly, 3 Monthly, 4 a few times a year, 5 Never
 data1$WORFREQ [data1$WORFREQ ==0|data1$WORFREQ ==7|data1$WORFREQ ==8|data1$WORFREQ ==9] <- NA
@@ -179,6 +179,7 @@ data1$WORFREQ [data1$WORFREQ ==0|data1$WORFREQ ==7|data1$WORFREQ ==8|data1$WORFR
 # Depression frequency: DEPFREQ. 1 Daily, 2 weekly, 3 Monthly, 4 a few times a year, 5 Never
 data1$DEPFREQ[data1$DEPFREQ==0|data1$DEPFREQ==7|data1$DEPFREQ==8|data1$DEPFREQ==9] <- NA
 ```
+
 
 
 *Let's check to confirm all of our re-categorizations look right.
@@ -191,6 +192,8 @@ summary(data1)
 ```{r}
 data1 <- rename(data1, age = AGE, sex = SEX, race = RACENEW, hispanic = HISPYN, veteran_status = ARMFEV, education = EDUC, employ_status = EMPSTAT, paid_sick = PAIDSICK, fam_income = INCFAM07ON, pov_ratio = POVERTY, health_status = HEALTH, bmi = BMICAT, med_access = USUALPL, med_care_delayed_cost = DELAYCOST, health_ins_status = HINOTCOVE, flu_vaccine = VACFLU12M, asthma = ASTHMAEV, cancer = CANCEREV, chd = CHEARTDIEV, alcohol_status = ALCSTAT1, smoking_status = SMOKESTATUS2, worry_freq	= WORFREQ, dep_freq = DEPFREQ, covid = CVDTESTRSLT)
 ```
+
+
 
 ### Check new variable names
 

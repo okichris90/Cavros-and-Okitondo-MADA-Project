@@ -17,7 +17,8 @@ library(ggplot2)
 library(haven)
 library(gridExtra) # To combine plots
 library(gtsummary) # For producing table 1
-#library("kableExtra") # For producing a nice table 1
+library("kableExtra") # For producing a nice table 1
+library(table1)
 ```
 
 ### Load the data
@@ -52,12 +53,6 @@ saveRDS(summary_df, file = summarytable_file)
 # Checking names of data
 ```{r}
 names(mydata2)
-```
-
-# Data exploration through figures
-
-```{r}
-getwd()
 ```
 
 
@@ -207,28 +202,27 @@ ggsave(filename = figure_file, plot=p5)
 **Table 1. Demographic Characteristics**
 
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
 (table1(~ factor(sex) + age + factor(race) + factor(hispanic) | flu_vaccine, data=mydata2))
 ```
+
+
+
 
 **Table 2. Socioeconomic Factors**
 
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
 (table1(~ factor(education) + factor(fam_income) | flu_vaccine, data=mydata2))
 ```
 
 **Table 3. Employment factors**
 
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
 (table1(~ factor(employ_status) + factor(paid_sick) | flu_vaccine, data=mydata2))
 ```
 
 **Table 4. Healthcare access**
 
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
 (table1(~ factor(health_ins_status) + factor(med_access) + factor(med_care_delayed_cost) | flu_vaccine, data=mydata2))
 ```
 
@@ -237,55 +231,80 @@ library(table1)
 **Table 5. Health status factors**
 
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
 (table1(~ factor(health_status) + factor(bmi) + factor(asthma) + factor(cancer) + factor(chd) + factor(alcohol_status) + factor(smoking_status) | flu_vaccine, data=mydata2))
 ```
 
 **Table 6. Mental health factors**
 
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
 (table1(~factor(worry_freq) + factor(dep_freq) | flu_vaccine, data=mydata2))
 
 ```
 
 
-```{r}
-tbl_summary(mydata2)
-```
-
-
-```{r}
-a <- mydata2 %>% select(age, sex)
-b <- tbl_summary(a)
-```
-
-
-
-
-
-
 ## Full table for demogrophics characteristics
 ```{r, warning=FALSE, message=FALSE}
-library(table1)
-table_dems <- (table1(~ sex + age + race + hispanic + education + fam_income + employ_status + paid_sick + health_ins_status + med_access + med_care_delayed_cost + health_status + bmi + asthma + cancer + chd + alcohol_status + smoking_status| flu_vaccine, data=mydata2))
+table_dems <- (table1(~ sex + age + race + hispanic + education + fam_income + employ_status + paid_sick + health_ins_status + med_access + med_care_delayed_cost + health_status + bmi + asthma + cancer + alcohol_status + smoking_status| flu_vaccine, data=mydata2))
 
 table_dems
 
 
 ```
 
+
+
+```{r}
+
+library(table1)
+
+table_dems6 <- table1(~ sex + age + race + hispanic + education + fam_income + employ_status + paid_sick + health_ins_status + med_access + med_care_delayed_cost + health_status + bmi + asthma + cancer + alcohol_status + smoking_status | flu_vaccine, data = mydata2, 
+                     label = list(
+                       sex = "Sex",
+                       age = "Age",
+                       race = "Race",
+                       hispanic = "Hispanic Ethnicity",
+                       education = "Education",
+                       fam_income = "Family Income",
+                       employ_status = "Employment Status",
+                       paid_sick = "Paid Sick Leave",
+                       health_ins_status = "Health Insurance Status",
+                       med_access = "Medical Access",
+                       med_care_delayed_cost = "Delayed Medical Care Cost",
+                       health_status = "Health Status",
+                       bmi = "Body Mass Index",
+                       asthma = "Asthma",
+                       cancer = "Cancer",
+                       alcohol_status = "Alcohol Consumption",
+                       smoking_status = "Smoking Status",
+                       flu_vaccine = "Flu Vaccine"
+                     ),
+                     show_na = TRUE
+                    )
+
+table_dems6
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Making demographics table look nicer
 ```{r}
 table_dems_v2 <- t1kable(table_dems)
 table_dems_v2
 ```
-
-```{r}
-install.packages("kableExtra", dependencies = TRUE)
-```
-
-
 
 
 ### Saving table 1 in the results section
@@ -294,5 +313,66 @@ saveRDS(table_dems_v2, file = (here("results", "table1_demographics.rds")))
 ```
 
 
+######## CLEANING TABLE 1 #######
 
+```{r}
+ (table1(~ sex + age + race + hispanic + education + fam_income + employ_status + paid_sick + health_ins_status + med_access + med_care_delayed_cost + health_status + bmi + asthma + cancer + chd + alcohol_status + smoking_status| flu_vaccine, data=mydata2))
+
+
+```
+
+
+```{r}
+mydata2 %>% tbl_summary(include = c(age, sex))
+```
+
+
+```{r}
+ tbl_summary(
+    mydata2,
+    include = c(sex, age, race, hispanic, education, fam_income, employ_status,    paid_sick, health_ins_status, med_access, med_care_delayed_cost, health_status, bmi, asthma, cancer, alcohol_status, smoking_status),
+    by = flu_vaccine, # split table by group
+    missing = "no" # don't list missing data separately
+  ) %>%
+  add_n() %>% # add column with total number of non-missing observations
+  add_p() %>% # test for a difference between groups
+  modify_header(label = "**Variable**") %>% # update the column header
+  bold_labels()
+```
+
+### Cleaner version of Table 1: Demographic Characteristics
+```{r}
+table_dems_v3 <- mydata2 %>%
+  tbl_summary(
+    statistic = list(all_categorical() ~ "{n} ({p}%)", all_continuous() ~ "{mean} ({sd})"),
+    by = flu_vaccine,
+    missing = "no",
+    label = list(
+      sex ~ "Sex",
+      age ~ "Age",
+      race ~ "Race",
+      hispanic ~ "Hispanic Ethnicity",
+      education ~ "Education",
+      fam_income ~ "Family Income",
+      employ_status ~ "Employment Status",
+      paid_sick ~ "Paid Sick Leave",
+      health_ins_status ~ "Health Insurance Status",
+      med_access ~ "Medical Access",
+      med_care_delayed_cost ~ "Delayed Medical Care Cost",
+      health_status ~ "Health Status",
+      bmi ~ "Body Mass Index",
+      asthma ~ "Asthma",
+      cancer ~ "Cancer",
+      alcohol_status ~ "Alcohol Consumption",
+      smoking_status ~ "Smoking Status"
+    )
+  ) %>%
+  bold_labels() %>%
+  add_overall() %>%
+  add_n() %>%
+  add_p() %>%
+  modify_header(label = "**Variable**") 
+
+table_dems_v3
+```
 

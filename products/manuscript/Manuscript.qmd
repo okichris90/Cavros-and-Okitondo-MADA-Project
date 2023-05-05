@@ -26,36 +26,127 @@ library(rbbt)
 
 # Summary/Abstract
 
-Influenza, or flu, is an extremely contagious respiratory illness caused by a virus. It can cause a range of symptoms, including fever, cough, sore throat, body aches, headache, chills, and fatigue (@cdc2022c.) It can be particularly dangerous for certain groups, such as older adults, young children, and individuals with underlying health issues, often resulting in severe illness or even death. Although influenza vaccinations are widely accessible, many people in the United States do not receive them as recommended. This study examines influenza vaccination uptake among US adults from 2012-2021. Using a subset of the National Health Interview Survey (NHIS) data set, researchers provide important insights into which groups are at highest risk for under-coverage of flu vaccine in order to better inform targeted public health interventions for improving uptake.
+Influenza, or flu, is an extremely contagious respiratory illness caused
+by a virus. It can cause a range of symptoms, including fever, cough,
+sore throat, body aches, headache, chills, and fatigue (CDC (@2022c).)
+It can be particularly dangerous for certain groups, such as older
+adults, young children, and individuals with underlying health issues,
+often resulting in severe illness or even death. Although influenza
+vaccinations are widely accessible, many people in the United States do
+not receive them as recommended. This study examines influenza
+vaccination uptake among US adults from 2012-2021. Using a subset of the
+National Health Interview Survey (NHIS) data set, researchers provide
+important insights into which groups are at highest risk for
+under-coverage of flu vaccine in order to better inform targeted public
+health interventions for improving uptake.
 
 # Introduction
 
-Influenza, commonly known as the flu, is a contagious respiratory illness which comes from influenza viruses. It can cause mild to severe illness, and in some cases, it can lead to hospitalization or even death. Symptoms of the flu include fever, cough, sore throat, body
-aches, headache, chills, and fatigue (@cdc2022.) It can spread easily from person to person through droplets that are released infected individuals cough, sneeze, or talk.
+Influenza, commonly known as the flu, is a contagious respiratory
+illness which comes from influenza viruses. It can cause mild to severe
+illness, and in some cases, it can lead to hospitalization or even
+death. Symptoms of the flu include fever, cough, sore throat, body
+aches, headache, chills, and fatigue (@CDC (2022a).) It can spread
+easily from person to person through droplets that are released infected
+individuals cough, sneeze, or talk.
 
-Vaccines are a crucial tool in preventing the spread of infectious diseases, including the flu. On an individual level, the best way to protect against the flu is by getting vaccinated each year. At the population level, high vaccine coverage is a powerful strategy for reducing spread of the virus (@cdc2022c.)
+Vaccines are a crucial tool in preventing the spread of infectious
+diseases, including the flu. On an individual level, the best way to
+protect against the flu is by getting vaccinated each year. At the
+population level, high vaccine coverage is a powerful strategy for
+reducing spread of the virus (@CDC (2022c).)
 
-The U.S. Centers for Disease Control and Prevention (CDC) recommends that everyone six months of age and older receive a flu vaccine each year, with rare exceptions (@cdc2022c.) Influenza is a constantly evolving virus that mutates rapidly, and uncontrolled spread gives rise to many different strains, so new vaccines are developed each year to protect against the most common strains of the virus that are expected to circulate during the upcoming flu season. It is especially important for individuals who are at higher risk of severe illness or complications from the flu, such as young children, older adults, pregnant women, and individuals with underlying medical conditions.
+The U.S. Centers for Disease Control and Prevention (@CDC) recommends
+that everyone six months of age and older receive a flu vaccine each
+year, with rare exceptions (@CDC (2022c).) Influenza is a constantly
+evolving virus that mutates rapidly, and uncontrolled spread gives rise
+to many different strains, so new vaccines are developed each year to
+protect against the most common strains of the virus that are expected
+to circulate during the upcoming flu season. It is especially important
+for individuals who are at higher risk of severe illness or
+complications from the flu, such as young children, older adults,
+pregnant women, and individuals with underlying medical conditions.
 
-In terms of the availability and cost, there have been significant changes for flu vaccines over the past 50 years (@InfluenzaHistoricTimeline2022.) In the 1960s, flu vaccines were not widely available and were primarily given to people considered to be at high risk for complications. The cost of the vaccine was relatively high and was not covered by most insurance plans. In the 1970s and 1980s, flu vaccines became more widely available and were recommended for more people, including children and healthy adults. The cost of the vaccine began to decrease as more people received it, and insurance coverage for the vaccine became more common. In the 1990s and 2000s, the availability of flu vaccines continued to increase, and the cost of the vaccine became more affordable for a larger proportion of the U.S. population.
+In terms of the availability and cost, there have been significant
+changes for flu vaccines over the past 50 years (@Influenza Historic
+Timeline \| Pandemic Influenza (Flu) \| CDC (2022).) In the 1960s, flu
+vaccines were not widely available and were primarily given to people
+considered to be at high risk for complications. The cost of the vaccine
+was relatively high and was not covered by most insurance plans. In the
+1970s and 1980s, flu vaccines became more widely available and were
+recommended for more people, including children and healthy adults. The
+cost of the vaccine began to decrease as more people received it, and
+insurance coverage for the vaccine became more common. In the 1990s and
+2000s, the availability of flu vaccines continued to increase, and the
+cost of the vaccine became more affordable for a larger proportion of
+the U.S. population.
 
-Today, flu vaccines are frequently available in doctor's offices, pharmacies, community clinics, workplace clinics, school-based clinics, and local health departments, among others. They are often covered by insurance plans, which has increased their accessibility. Many public health clinics and community organizations also offer flu vaccines at low or no cost, in order to better target historically unreached populations.
+Today, flu vaccines are frequently available in doctor's offices,
+pharmacies, community clinics, workplace clinics, school-based clinics,
+and local health departments, among others. They are often covered by
+insurance plans, which has increased their accessibility. Many public
+health clinics and community organizations also offer flu vaccines at
+low or no cost, in order to better target historically unreached
+populations.
 
-Despite the availability and recommendation of influenza vaccines, many people in the United States still do not receive them as recommended. In fact, the CDC reported that only 49.2% of adults aged 18 years and older received a flu vaccine during the 2020-2021 flu season (@cdc2022b.) This low uptake of influenza vaccine highlights the need for understanding the factors that contribute to under-coverage of the vaccine in certain populations.
+Despite the availability and recommendation of influenza vaccines, many
+people in the United States still do not receive them as recommended. In
+fact, the CDC reported that only 49.2% of adults aged 18 years and older
+received a flu vaccine during the 2020-2021 flu season (@CDC (2022b).)
+This low uptake of influenza vaccine highlights the need for
+understanding the factors that contribute to under-coverage of the
+vaccine in certain populations.
 
-Racial/ethnic minorities have a long history of reduced vaccination rates relative to white Americans (@khan_etal2018.) Since 2010, flu vaccination coverage has been consistently lower among Black, Hispanic, and AI/AN adults. During the 2021--2022 season, flu vaccination coverage was 54% among White adults, 42% among Black adults, 38% among Hispanic adults, and 41% among AI/AN adults (@cdc2022b.) There are many reasons for these inequities, including lack of access to health care and insurance, missed opportunities to vaccinate, and misinformation and distrust.
+Racial and ethnic minorities have a long history of reduced vaccination
+rates relative to white Americans (@Khan, @Hall, @Tanner, & @Marlow
+(@2018).) Since 2010, flu vaccination coverage has been consistently
+lower among Black, Hispanic, and AI/AN adults. During the 2021--2022
+season, flu vaccination coverage was 54% among White adults, 42% among
+Black adults, 38% among Hispanic adults, and 41% among AI/AN adults
+(@CDC (2022b).) There are many reasons for these inequities, including
+lack of access to health care and insurance, missed opportunities to
+vaccinate, and misinformation and distrust.
 
-In prior studies, lower income levels were associated with decreased odds of influenza vaccine receipt (@gaskinEffectIncomeDisparities2023; @vashist_etal2022), and having health insurance coverage has also been shown to be associated with increased influenza vaccine coverage (@cambou_etal2021; @vashist_etal2022). Influenza vaccination rates were also found to be lower in rural than in urban areas among adults of all age groups and both genders (@jain_etal2022). However, there are still many variables of interest from the NHIS dataset that have yet to be evaluated in detail. Additionally, the periods of study from all prior research all end prior to the onset of the COVID-19 pandemic, which could have altered or heightened disparities even more.
+In prior studies, lower income levels were associated with decreased
+odds of influenza vaccine receipt (@Gaskin, Woods, Ghosh, Watson, &
+Huber (2023); Vashist, Choi, & Patel (2022)), and having health
+insurance coverage has also been shown to be associated with increased
+influenza vaccine coverage (Cambou, Copeland, Nielsen-Saines, & Macinko
+(2021); Vashist et al. (2022)). Influenza vaccination rates were also
+found to be lower in rural than in urban areas among adults of all age
+groups and both genders (Jain et al. (2022)). However, there are still
+many variables of interest from the NHIS dataset that have yet to be
+evaluated in detail. Additionally, the periods of study from all prior
+research all end prior to the onset of the COVID-19 pandemic, which
+could have altered or heightened disparities even more.
+
+## Question:
+
+Looking at whether study participants received any influenza vaccine in
+the past twelve month, this study aims to answer the following question:
+
+Which groups are at highest risk for low uptake of the influenza
+vaccine?
 
 # Methods
 
 ## Description of data and data source
 
-The data source used for this project is the National Health Interview Survey (NHIS). It is a harmonized set of data beginning in 1963 with information on general health status, acute and chronic illness, functional limitations, access to care, insurance coverage, and health behaviors for the U.S. population. On average, the survey covers 100,000 persons in 45,000 households each year. It is conducted in-person and by telephone, and its sample is designed to be representative of the civilian United States population (@IPUMSNHIS.)
+The data source used for this project is the National Health Interview
+Survey (NHIS). It is a harmonized set of data beginning in 1963 with
+information on general health status, acute and chronic illness,
+functional limitations, access to care, insurance coverage, and health
+behaviors for the U.S. population. On average, the survey covers 100,000
+persons in 45,000 households each year. It is conducted in-person and by
+telephone, and its sample is designed to be representative of the
+civilian United States population (@IPUMSNHIS.)
 
 ## Study population
 
-Individuals were eligible for the study if they were interviewed as part of the NHIS household survey between the years of 2012 and 2021. Table 1 below provides a summary of demographic characteristics of our study population.
+Individuals were eligible for the study if they were interviewed as part
+of the NHIS household survey between the years of 2012 and 2021. Table 1
+below provides a summary of demographic characteristics of our study
+population.
 
 ## Statistical analysis
 
@@ -97,11 +188,9 @@ and 25% made up the testing dataset.
 
 ## Exploratory/Descriptive analysis
 
-
 ```{r echo=FALSE, out.width = "10%",  fig.align = "center"}
 knitr::include_graphics(here("results", "age & flu uptake distribution.png"))
 ```
-
 
 ```{r echo=FALSE, out.width = "10%",  fig.align = "center"}
 knitr::include_graphics(here("results", "race & flu uptake distribution.png"))
@@ -134,8 +223,47 @@ result_table3 <- readRDS(here("results", "full_model.rds"))
 result_table3
 ```
 
-The results of our analysis showed that age was significantly associated with flu vaccine uptake (OR = 1.031, 95% CI = 1.030-1.032, p < 0.001), with older individuals being more likely to have received the vaccine. The sex of the individual was also significantly associated with flu vaccine uptake (OR = 1.416, 95% CI = 1.384-1.448, p < 0.001), with females being more likely to have received the vaccine compared to males. Race was also significantly associated with flu vaccine uptake. Specifically, individuals who identified as black (OR = 0.790, 95% CI = 0.776-0.805, p < 0.001) were less likely to have received the vaccine compared to those who identified as white. Native Americans (OR = 1.284, 95% CI = 1.149-1.436, p = 0.0001) and Asians (OR = 1.141, 95% CI = 1.089-1.195, p < 0.001) were more likely to have received the vaccine than whites. Hispanic individuals (OR = 0.825, 95% CI = 0.806-0.845, p < 0.001) were less likely to have received the vaccine compared to non-Hispanic individuals. Education level was also significantly associated with flu vaccine uptake, with individuals who had higher levels of education being more likely to have received the vaccine. Specifically, individuals with some college education (OR = 1.172, 95% CI = 1.126-1.220, p < 0.001), a bachelor's degree (OR = 1.460, 95% CI = 1.402-1.520, p < 0.001), or a graduate degree (OR = 1.911, 95% CI = 1.818-2.007, p < 0.001) were more likely to have received the vaccine compared to those with no education. Individuals with family incomes of $50,000-$99,999 (OR = 1.140, 95% CI = 1.112-1.168, p < 0.001) and those with family incomes of $100,000 or more (OR = 1.417, 95% CI = 1.380-1.455, p < 0.001) were more likely to have received the vaccine compared to those with family incomes less than $50,000. In terms of health-related variables, individuals with asthma (OR = 1.398, 95% CI = 1.361-1.435, p < 0.001), cancer (OR = 1.322, 95% CI = 1.281-1.364, p < 0.001), and coronary heart disease (OR = 1.637, 95% CI = 1.560-1.717, p < 0.001) were more likely to have received the vaccine compared to those without these conditions. Finally, smoking status was significantly associated with flu vaccine uptake, with former smokers (OR = 1.059, 95% CI = 1.032-1.087, p = 0.0006) being more likely to receive the vaccine compared to nonsmoker, and current smokers (OR = 0.669, 95% CI = 0.643 - 0.696) being less likely to receive vaccine. Finally, former drinkers (OR = 1.059, 95% CI = 1.010-1.111, p = 0.0172) were more likely to receive the vaccine compared to nondrinkers, and this was statistically significant. However, current drinkers (OR = 0.978, 95% CI = 0.941 - 1.016) were less likely to receive vaccine compared to nondrinkers. Although this association was not statistically significant.
-
+The results of our analysis showed that age was significantly associated
+with flu vaccine uptake (OR = 1.031, 95% CI = 1.030-1.032, p \< 0.001),
+with older individuals being more likely to have received the vaccine.
+The sex of the individual was also significantly associated with flu
+vaccine uptake (OR = 1.416, 95% CI = 1.384-1.448, p \< 0.001), with
+females being more likely to have received the vaccine compared to
+males. Race was also significantly associated with flu vaccine uptake.
+Specifically, individuals who identified as black (OR = 0.790, 95% CI =
+0.776-0.805, p \< 0.001) were less likely to have received the vaccine
+compared to those who identified as white. Native Americans (OR = 1.284,
+95% CI = 1.149-1.436, p = 0.0001) and Asians (OR = 1.141, 95% CI =
+1.089-1.195, p \< 0.001) were more likely to have received the vaccine
+than whites. Hispanic individuals (OR = 0.825, 95% CI = 0.806-0.845, p
+\< 0.001) were less likely to have received the vaccine compared to
+non-Hispanic individuals. Education level was also significantly
+associated with flu vaccine uptake, with individuals who had higher
+levels of education being more likely to have received the vaccine.
+Specifically, individuals with some college education (OR = 1.172, 95%
+CI = 1.126-1.220, p \< 0.001), a bachelor's degree (OR = 1.460, 95% CI =
+1.402-1.520, p \< 0.001), or a graduate degree (OR = 1.911, 95% CI =
+1.818-2.007, p \< 0.001) were more likely to have received the vaccine
+compared to those with no education. Individuals with family incomes of
+\$50,000-\$99,999 (OR = 1.140, 95% CI = 1.112-1.168, p \< 0.001) and
+those with family incomes of \$100,000 or more (OR = 1.417, 95% CI =
+1.380-1.455, p \< 0.001) were more likely to have received the vaccine
+compared to those with family incomes less than \$50,000. In terms of
+health-related variables, individuals with asthma (OR = 1.398, 95% CI =
+1.361-1.435, p \< 0.001), cancer (OR = 1.322, 95% CI = 1.281-1.364, p \<
+0.001), and coronary heart disease (OR = 1.637, 95% CI = 1.560-1.717, p
+\< 0.001) were more likely to have received the vaccine compared to
+those without these conditions. Finally, smoking status was
+significantly associated with flu vaccine uptake, with former smokers
+(OR = 1.059, 95% CI = 1.032-1.087, p = 0.0006) being more likely to
+receive the vaccine compared to nonsmoker, and current smokers (OR =
+0.669, 95% CI = 0.643 - 0.696) being less likely to receive vaccine.
+Finally, former drinkers (OR = 1.059, 95% CI = 1.010-1.111, p = 0.0172)
+were more likely to receive the vaccine compared to nondrinkers, and
+this was statistically significant. However, current drinkers (OR =
+0.978, 95% CI = 0.941 - 1.016) were less likely to receive vaccine
+compared to nondrinkers. Although this association was not statistically
+significant.
 
 ## Model Evaluation
 
@@ -155,21 +283,66 @@ knitr::include_graphics(here("results", "AUC_reduced_model.png"))
 
 ## Summary and Interpretation
 
-The results of our analysis indicate that several demographic and health-related factors are significantly associated with flu vaccine uptake. Our findings suggest that age, sex, race, education level, family income, and health status are all important predictors of vaccine uptake. Specifically, older individuals, females, individuals with higher education levels, and those with higher family incomes were more likely to have received the vaccine. On the other hand, individuals who identified as black or Hispanic were less likely to have received the vaccine, while Native Americans and Asians were more likely to have received it. In terms of health-related variables, individuals with asthma, cancer, and coronary heart disease were more likely to have received the vaccine compared to those without these conditions. Finally, our findings also suggest that smoking and drinking status are associated with vaccine uptake, with former smokers and drinkers more likely to have received the vaccine compared to nonsmokers and nondrinkers, respectively. These results have important implications for public health efforts aimed at increasing vaccine uptake, particularly among underserved and marginalized populations.
+The results of our analysis indicate that several demographic and
+health-related factors are significantly associated with flu vaccine
+uptake. Our findings suggest that age, sex, race, education level,
+family income, and health status are all important predictors of vaccine
+uptake. Specifically, older individuals, females, individuals with
+higher education levels, and those with higher family incomes were more
+likely to have received the vaccine. On the other hand, individuals who
+identified as black or Hispanic were less likely to have received the
+vaccine, while Native Americans and Asians were more likely to have
+received it. In terms of health-related variables, individuals with
+asthma, cancer, and coronary heart disease were more likely to have
+received the vaccine compared to those without these conditions.
+Finally, our findings also suggest that smoking and drinking status are
+associated with vaccine uptake, with former smokers and drinkers more
+likely to have received the vaccine compared to nonsmokers and
+nondrinkers, respectively. These results have important implications for
+public health efforts aimed at increasing vaccine uptake, particularly
+among underserved and marginalized populations.
 
 ## Strengths and Limitations
 
-While caution should be exercised when interpreting the significance of associations in observational studies due to potential confounding and reverse causality, this analysis provides valuable insights into identifying groups at risk for low influenza vaccine uptake over time. Limited studies have explored the relationship between a comprehensive list of factors and influenza vaccine coverage, and the large study population in this research improves statistical power, generalizability, precision, and accuracy of the findings. The design of the NHIS survey also allows for representative sampling of households, reducing sampling bias. Additionally, the survey questions were tailored to the month of each interview, enabling more detailed assessment of the seasonality of influenza vaccine schedule in the United States. 
+While caution should be exercised when interpreting the significance of
+associations in observational studies due to potential confounding and
+reverse causality, this analysis provides valuable insights into
+identifying groups at risk for low influenza vaccine uptake over time.
+Limited studies have explored the relationship between a comprehensive
+list of factors and influenza vaccine coverage, and the large study
+population in this research improves statistical power,
+generalizability, precision, and accuracy of the findings. The design of
+the NHIS survey also allows for representative sampling of households,
+reducing sampling bias. Additionally, the survey questions were tailored
+to the month of each interview, enabling more detailed assessment of the
+seasonality of influenza vaccine schedule in the United States.
 
-In terms of limitations, as noted above, observational studies cannot demonstrate causality. The reason for not receiving an influenza vaccine is not an NHIS variable, which could have provided more insight. It is also important to note that the primary outcome of vaccination within the past 12 months was self-reported, and there was no way to verify using medical records, meaning that there is a risk of reporting bias due to recall, social desirability, or other factors. The reliability of self-report compared to health records for influenza vaccine is not known. Lastly, It is also unclear to what extent the COVID-19 pandemic and antivaccine movements have impacted vaccine behavior and hesitancy, which could be explored in future qualitative studies.
-
+In terms of limitations, as noted above, observational studies cannot
+demonstrate causality. The reason for not receiving an influenza vaccine
+is not an NHIS variable, which could have provided more insight. It is
+also important to note that the primary outcome of vaccination within
+the past 12 months was self-reported, and there was no way to verify
+using medical records, meaning that there is a risk of reporting bias
+due to recall, social desirability, or other factors. The reliability of
+self-report compared to health records for influenza vaccine is not
+known. Lastly, It is also unclear to what extent the COVID-19 pandemic
+and antivaccine movements have impacted vaccine behavior and hesitancy,
+which could be explored in future qualitative studies.
 
 # Conclusions
 
-In conclusion, this study highlights the various demographic and health-related factors that are significantly associated with flu vaccine uptake. Understanding these predictors can help inform public health efforts aimed at increasing vaccine uptake, especially among marginalized populations. The findings suggest that targeted interventions may be necessary to address disparities in vaccine uptake among different racial and ethnic groups, as well as those with lower education levels and family incomes. Additionally, our findings on the association between smoking and drinking status and vaccine uptake may suggest the need for tailored messaging to encourage vaccination among these populations. Overall, these results can help guide public health interventions to promote vaccine uptake and ultimately reduce the burden of flu-related illness and hospitalizations.
+In conclusion, this study highlights the various demographic and
+health-related factors that are significantly associated with flu
+vaccine uptake. Understanding these predictors can help inform public
+health efforts aimed at increasing vaccine uptake, especially among
+marginalized populations. The findings suggest that targeted
+interventions may be necessary to address disparities in vaccine uptake
+among different racial and ethnic groups, as well as those with lower
+education levels and family incomes. Additionally, our findings on the
+association between smoking and drinking status and vaccine uptake may
+suggest the need for tailored messaging to encourage vaccination among
+these populations. Overall, these results can help guide public health
+interventions to promote vaccine uptake and ultimately reduce the burden
+of flu-related illness and hospitalizations.
 
 # References
-
-
-
-

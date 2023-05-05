@@ -173,7 +173,7 @@ tidy(log_fit_health_behaviors)
 ### Categorical outcome as flu vaccine with smoking and alcohol as predictors of interest
 
 ```{r}
-log_fit_full <- log_mod %>% fit(as.factor(flu_vaccine) ~  age + sex + race + hispanic + education + fam_income + asthma + cancer + chd + smoking_status+ alcohol_status, data = mydata2)
+log_fit_full <- log_mod %>% fit(as.factor(flu_vaccine) ~  age + sex + race + hispanic + education + fam_income + asthma + cancer + smoking_status+ alcohol_status, data = mydata2)
 
 table_full <- tidy(log_fit_full)
 table_full
@@ -182,3 +182,76 @@ saveRDS(table_full, file = (here("results", "full_model.rds")))
 ```
 
 *The results show that those who graduated from high school did not statistically differ from those who never graduated for their flu vaccine uptake. Also, current drinkers did not statically differ from those who never drank. All other predictors were found statistically significant.*
+
+
+
+```{r}
+log_fit_full2 <- log_mod %>% fit(as.factor(flu_vaccine) ~  age + sex + race + hispanic + education + fam_income + asthma + cancer + smoking_status+ alcohol_status, data = mydata2)
+
+table_full <- tidy(log_fit_full2)
+table_full
+
+
+```
+
+
+```{r}
+log_fit_full <- log_mod %>% fit(as.factor(flu_vaccine) ~  age + sex + race + hispanic + education + fam_income + asthma + cancer +  smoking_status+ alcohol_status, data = mydata2)
+
+t1 <- tbl_regression(log_fit_full, exponentiate = TRUE)
+t1
+```
+
+
+
+
+
+
+```{r}
+
+library(knitr)
+
+log_fit_full <- log_mod %>% fit(as.factor(flu_vaccine) ~  age + sex + race + hispanic + education + fam_income + asthma + cancer + smoking_status + alcohol_status, data = mydata2)
+
+t1 <- tbl_regression(log_fit_full, exponentiate = TRUE) %>%
+  add_column(".rownames" = rownames(t1), .before = 1) %>%
+  rename(
+    "Variable" = term,
+    "Odds Ratio" = estimate,
+    "95% CI" = conf.low:conf.high,
+    "p-value" = p.value
+  ) %>%
+  select(-c(".rownames", ".keep")) %>%
+  mutate(
+    Variable = case_when(
+      Variable == "age" ~ "Age",
+      Variable == "sex" ~ "Sex",
+      Variable == "race" ~ "Race",
+      Variable == "hispanic" ~ "Hispanic Ethnicity",
+      Variable == "education" ~ "Education",
+      Variable == "fam_income" ~ "Family Income",
+      Variable == "asthma" ~ "Asthma",
+      Variable == "cancer" ~ "Cancer",
+      Variable == "smoking_status" ~ "Smoking Status",
+      Variable == "alcohol_status" ~ "Alcohol Consumption",
+      TRUE ~ Variable
+    )
+  ) %>%
+  kable(format = "markdown", align = "c") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+
+```
+
+
+
+```{r}
+library(knitr)
+kable(table_full, 
+      caption = "Multivariate Logistic Regression of Influenza Vaccination Status") %>%
+  kable_styling(bootstrap_options = "striped", full_width = FALSE)
+
+```
+
+
+
+
